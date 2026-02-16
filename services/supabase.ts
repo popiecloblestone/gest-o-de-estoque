@@ -4,10 +4,21 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
-export const isSupabaseConfigured = !!supabaseUrl && !!supabaseKey;
+// Validate if the URL is actually a valid URL string
+const isValidUrl = (url: string | undefined): boolean => {
+    if (!url) return false;
+    try {
+        new URL(url);
+        return true;
+    } catch {
+        return false;
+    }
+};
 
-// Create a dummy client if config is missing to prevent immediate crash,
-// but the app should check isSupabaseConfigured and show an error screen.
+export const isSupabaseConfigured = isValidUrl(supabaseUrl) && !!supabaseKey;
+
+// Create a dummy client if config is missing OR invalid to prevent immediate crash.
+// The app will check isSupabaseConfigured and show the error screen.
 export const supabase = isSupabaseConfigured
-    ? createClient(supabaseUrl, supabaseKey)
+    ? createClient(supabaseUrl!, supabaseKey!)
     : createClient('https://placeholder.supabase.co', 'placeholder');
