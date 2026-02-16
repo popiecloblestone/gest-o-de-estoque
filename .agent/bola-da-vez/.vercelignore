@@ -1,0 +1,7 @@
+supabase/
+scripts/
+*.sql
+*.py
+*.md
+.git/
+node_modules/

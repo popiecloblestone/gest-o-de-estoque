@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bola da Vez - Equipamentos Esportivos de Elite</title>
+  <meta name="description"
+    content="Chuteiras profissionais Nike, Adidas, Puma e muito mais. Envio para todo o Brasil." />
+
+  <!-- Preconnect para Supabase Storage (acelera carregamento de imagens) -->
+  <link rel="preconnect" href="https://olqbvraizyneplodvncb.supabase.co" crossorigin />
+  <link rel="dns-prefetch" href="https://olqbvraizyneplodvncb.supabase.co" />
+
+  <!-- HTTP/2 Push hint para Supabase Storage (estabelece conexão antecipada) -->
+  <link rel="preload" href="https://olqbvraizyneplodvncb.supabase.co/storage/v1/object/public/products/" as="fetch"
+    crossorigin />
+
+  <!-- Preload logo (critical asset) -->
+  <link rel="preload" href="/logo.svg" as="image" type="image/svg+xml" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://olqbvraizyneplodvncb.supabase.co" />
+  <link rel="preload" as="image"
+    href="https://olqbvraizyneplodvncb.supabase.co/storage/v1/object/public/Imagens%20do%20site/logo.png">
+
+  <style>
+    /* Hide scrollbar for chrome/safari/opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    ::selection {
+      background-color: #D4AF37;
+      color: #000000;
+    }
+
+    body {
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+
+  <link rel="stylesheet" href="/index.css">
+
+  <script>
+    // Registrar Service Worker para cache de imagens
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('SW registrado:', reg.scope))
+          .catch(err => console.log('SW erro:', err));
+      });
+    }
+  </script>
+</head>
+
+<body class="selection:bg-brand-gold selection:text-brand-black">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

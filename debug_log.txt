@@ -1,0 +1,14 @@
+Starting DB Debug...
+Testing connection to: "https://olqbvraizyneplodvncb.supabase.co"
+Found product ID: 41
+Current keys in returned object: ["id","name","brand","price","image","colors","description","surface","weight","material","technologies","is_promotion","free_shipping","stock","created_at","images","width_cm","height_cm","length_cm","weight_kg"]
+Column checks: 
+- material: "EXISTS"
+- technologies: "EXISTS"
+- free_shipping: "EXISTS"
+- description has legacy metadata: false
+Current material value: null
+Attempting to update name to: "Check_140"
+Update (name) success. 
+Attempting to update material... 
+Update material SUCCESS. 

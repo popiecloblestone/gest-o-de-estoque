@@ -1,0 +1,13 @@
+Starting Advanced DB Debug...
+Testing connection... 
+Testing on Product ID: 41
+Attempting to update multiple fields: {"material":"Debug Material 1770485251486","technologies":["DebugTech1","DebugTech2"],"weight":"500g","free_shipping":true,"is_promotion":true,"description":"Debug Description 1770485251486"}
+Update SUCCESS. Verifying values... 
+Read back values: 
+material: null
+technologies: [] "Is Array?" true
+weight: null
+free_shipping: false
+is_promotion: false
+description: "Conforto essencial para sua partida."
+CRITICAL: Write appeared successful but data mismatch! 

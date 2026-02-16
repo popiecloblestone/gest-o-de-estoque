@@ -1,0 +1,5 @@
+{
+  "name": "Gestão de Estoque",
+  "description": "Uma aplicação mobile-first de gerenciamento de estoque com atualizações em tempo real, edição de preços e análises visuais.",
+  "requestFramePermissions": []
+}
