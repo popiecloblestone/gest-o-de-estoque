@@ -14,6 +14,9 @@ export async function fetchOrders(): Promise<{ data: Order[] | null; error: any 
           full_name,
           email,
           phone
+        ),
+        items:order_items (
+          *
         )
       `)
             .order('created_at', { ascending: false });

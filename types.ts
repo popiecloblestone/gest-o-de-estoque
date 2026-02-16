@@ -50,6 +50,16 @@ export interface CustomerInfo {
   phone?: string;
 }
 
+export interface OrderItem {
+  id: number;
+  product_id: number;
+  name: string;
+  quantity: number;
+  price_at_purchase: number;
+  selected_size: string;
+  selected_color: string;
+}
+
 export interface Order {
   id: number;
   user_id: string;
@@ -59,4 +69,5 @@ export interface Order {
   tracking_code: string | null;
   created_at: string;
   customer?: CustomerInfo;
+  items?: OrderItem[];
 }

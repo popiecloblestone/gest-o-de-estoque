@@ -161,6 +161,34 @@ export function OrdersTab() {
                             </div>
                         </div>
 
+                        {/* Order Items */}
+                        <div className="mt-6 pt-6 border-t border-slate-700">
+                            <h4 className="font-bold text-white mb-3 flex items-center gap-2">
+                                <span className="material-symbols-outlined text-brand-gold">shopping_bag</span>
+                                Itens do Pedido
+                            </h4>
+                            <div className="space-y-3">
+                                {order.items?.map((item) => (
+                                    <div key={item.id} className="flex justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                                        <div>
+                                            <p className="font-medium text-slate-200">{item.name}</p>
+                                            <div className="flex gap-3 text-sm text-slate-400 mt-1">
+                                                <span>Tam: {item.selected_size}</span>
+                                                {item.selected_color && <span>Cor: {item.selected_color}</span>}
+                                                <span>Qtd: {item.quantity}</span>
+                                            </div>
+                                        </div>
+                                        <p className="font-bold text-brand-gold">
+                                            {formatCurrency(item.price_at_purchase * item.quantity)}
+                                        </p>
+                                    </div>
+                                ))}
+                                {(!order.items || order.items.length === 0) && (
+                                    <p className="text-slate-500 italic">Nenhum item encontrado.</p>
+                                )}
+                            </div>
+                        </div>
+
                         {/* Tracking Code Section */}
                         <div className="mt-6 pt-6 border-t border-slate-700">
                             {order.tracking_code ? (
