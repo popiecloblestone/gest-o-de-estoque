@@ -11,4 +11,12 @@ if (!supabaseUrl || !supabaseKey) {
 // Ensure URL has protocol
 const validUrl = supabaseUrl.startsWith('http') ? supabaseUrl : `https://${supabaseUrl}`;
 
-export const supabase = createClient(validUrl, supabaseKey);
+console.log(`Supabase URL: ${validUrl}`); // Debug: Check if URL is correct in production
+
+export const supabase = createClient(validUrl, supabaseKey, {
+    auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+    }
+});
