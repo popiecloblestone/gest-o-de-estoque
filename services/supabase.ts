@@ -5,7 +5,10 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL or Key not found in environment variables');
+    throw new Error('Supabase URL or Key not found in environment variables. Please check your .env.local or Vercel settings.');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Ensure URL has protocol
+const validUrl = supabaseUrl.startsWith('http') ? supabaseUrl : `https://${supabaseUrl}`;
+
+export const supabase = createClient(validUrl, supabaseKey);
