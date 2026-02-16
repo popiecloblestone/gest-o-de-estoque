@@ -7,8 +7,10 @@ import { OrdersTab } from './components/OrdersTab';
 import { useProducts } from './hooks/useProducts';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Login } from './components/Login';
+import { isSupabaseConfigured } from './services/supabase';
 
 function Dashboard() {
+
   // Logic extracted to custom hook
   const { products, addProduct, editProduct, updateInventory, updatePrice, loading, error } = useProducts();
   const { signOut, user } = useAuth(); // Get user and signOut
@@ -144,6 +146,29 @@ function Dashboard() {
 }
 
 function AppContent() {
+  if (!isSupabaseConfigured) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+        <div className="bg-slate-800 p-8 rounded-xl border border-red-500/50 max-w-lg w-full">
+          <h2 className="text-2xl font-bold text-red-500 mb-4 flex items-center gap-2">
+            <span className="material-symbols-outlined">error</span>
+            Configuração Necessária
+          </h2>
+          <p className="text-slate-300 mb-4">
+            As variáveis de ambiente do Supabase não foram encontradas.
+          </p>
+          <div className="bg-slate-900 p-4 rounded-lg border border-slate-700 font-mono text-sm text-slate-400 mb-4 overflow-x-auto">
+            <p>VITE_SUPABASE_URL</p>
+            <p>VITE_SUPABASE_KEY</p>
+          </div>
+          <p className="text-slate-400 text-sm">
+            Por favor, configure estas variáveis no seu provedor de hopedagem (Vercel, Netlify, etc) ou no arquivo .env.local para desenvolvimento local.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const { user, loading } = useAuth();
 
   if (loading) {
