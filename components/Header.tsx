@@ -5,8 +5,8 @@ interface HeaderProps {
   lowStockCount: number;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  currentView: 'list' | 'add' | 'orders';
-  onChangeView: (view: 'list' | 'add' | 'orders') => void;
+  currentView: 'list' | 'add' | 'orders' | 'coupons';
+  onChangeView: (view: 'list' | 'add' | 'orders' | 'coupons') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -62,6 +62,15 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
             >
               <span>Pedidos</span>
+            </button>
+            <button
+              onClick={() => onChangeView('coupons')}
+              className={`px-6 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${currentView === 'coupons'
+                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                }`}
+            >
+              <span>Cupons</span>
             </button>
           </nav>
 

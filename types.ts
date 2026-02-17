@@ -71,3 +71,24 @@ export interface Order {
   customer?: CustomerInfo;
   items?: OrderItem[];
 }
+
+// Coupon types
+export interface Coupon {
+  id: number;
+  code: string;
+  discount_type: 'percentage' | 'fixed';
+  discount_value: number;
+  is_active: boolean;
+  expiration_date: string;
+  usage_limit_user: number;
+  used_count: number;
+  first_purchase_only: boolean;
+  created_at: string;
+}
+
+export interface CouponValidation {
+  valid: boolean;
+  message?: string;
+  discount?: number;
+  coupon?: Coupon;
+}
