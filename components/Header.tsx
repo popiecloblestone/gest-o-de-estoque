@@ -1,10 +1,13 @@
 import React from 'react';
+import { CATEGORIES } from '../constants';
 
 interface HeaderProps {
   totalItems: number;
   lowStockCount: number;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
   currentView: 'list' | 'add' | 'orders' | 'coupons';
   onChangeView: (view: 'list' | 'add' | 'orders' | 'coupons') => void;
 }
@@ -14,6 +17,8 @@ export const Header: React.FC<HeaderProps> = ({
   lowStockCount,
   searchQuery,
   setSearchQuery,
+  selectedCategory,
+  setSelectedCategory,
   currentView,
   onChangeView,
 }) => {
@@ -138,9 +143,20 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               </div>
 
-              {/* Quick Filters (Visual Only) */}
+              {/* Quick Filters */}
               <div className="hidden md:flex gap-2">
-                <button className="px-4 py-2 rounded-xl bg-slate-800 text-white text-sm font-bold shadow-md">Todos</button>
+                {CATEGORIES.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${selectedCategory === category
+                      ? 'bg-slate-800 text-white shadow-md'
+                      : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-border-dark'
+                      }`}
+                  >
+                    {category}
+                  </button>
+                ))}
               </div>
 
             </div>

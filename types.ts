@@ -31,7 +31,7 @@ export interface Product {
 
 }
 
-export type Category = 'Todos' | 'Futsal' | 'Campo' | 'Society';
+export type Category = 'Todos' | 'Futsal' | 'Campo' | 'Society' | 'Tênis';
 
 // Order types
 export interface AddressSnapshot {

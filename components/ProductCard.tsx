@@ -58,16 +58,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <div
-      className={`group bg-white dark:bg-card-dark border border-slate-100 dark:border-border-dark rounded-3xl p-6 shadow-soft hover:shadow-soft-hover transition-all duration-300 ${isOutOfStock ? 'opacity-75 hover:opacity-100' : ''
+      className={`group relative bg-white dark:bg-card-dark border border-slate-100 dark:border-border-dark rounded-3xl p-6 shadow-soft hover:shadow-soft-hover transition-all duration-300 ${isOutOfStock ? 'opacity-75 hover:opacity-100' : ''
         }`}
     >
+      {/* Absolute Actions - Grouped and Neat */}
+      <div className="absolute top-4 right-4 flex gap-0.5 z-10 opacity-0 group-hover:opacity-100 transition-all duration-200">
+        <button
+          onClick={() => onEdit(product)}
+          className="p-1.5 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-all"
+          title="Editar Produto"
+        >
+          <span className="material-symbols-outlined text-xl">edit</span>
+        </button>
+        <button
+          onClick={() => {
+            if (window.confirm(`Deseja realmente excluir o produto "${product.name}"?`)) {
+              onDelete(product.id);
+            }
+          }}
+          className="p-1.5 text-slate-300 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-lg transition-all"
+          title="Excluir Produto"
+        >
+          <span className="material-symbols-outlined text-xl">delete</span>
+        </button>
+      </div>
+
       <div className="flex items-start gap-5 mb-6">
         <div
           className={`size-20 rounded-2xl bg-slate-50 dark:bg-slate-800 flex-shrink-0 bg-cover bg-center shadow-inner ${isOutOfStock ? 'grayscale' : ''
             }`}
           style={{ backgroundImage: `url('${product.imageUrl}')` }}
         />
-        <div className="flex-1 min-w-0 py-1">
+        <div className="flex-1 min-w-0 py-1 pr-16">
           <div className="mb-2">
             <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight truncate" title={product.name}>
               {product.name}
@@ -98,26 +120,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           {renderBadge()}
         </div>
-        <div className="flex flex-col gap-1">
-          <button
-            onClick={() => onEdit(product)}
-            className="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-            title="Editar Produto"
-          >
-            <span className="material-symbols-outlined">edit</span>
-          </button>
-          <button
-            onClick={() => {
-              if (window.confirm(`Deseja realmente excluir o produto "${product.name}"?`)) {
-                onDelete(product.id);
-              }
-            }}
-            className="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-xl transition-all"
-            title="Excluir Produto"
-          >
-            <span className="material-symbols-outlined">delete</span>
-          </button>
-        </div>
+
       </div>
 
       <div className="grid grid-cols-2 gap-5 pt-2">

@@ -16,6 +16,7 @@ function Dashboard() {
 
   // UI State
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [currentView, setCurrentView] = useState<'list' | 'add' | 'orders' | 'coupons'>('list');
   const [isSaving, setIsSaving] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
@@ -23,11 +24,13 @@ function Dashboard() {
   // Derived State (View Logic)
   const filteredProducts = useMemo(() => {
     const lowerQuery = searchQuery.toLowerCase();
-    return products.filter((product) =>
-      product.name.toLowerCase().includes(lowerQuery) ||
-      product.sku.toLowerCase().includes(lowerQuery)
-    );
-  }, [products, searchQuery]);
+    return products.filter((product) => {
+      const matchesSearch = product.name.toLowerCase().includes(lowerQuery) ||
+        product.sku.toLowerCase().includes(lowerQuery);
+      const matchesCategory = selectedCategory === 'Todos' || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [products, searchQuery, selectedCategory]);
 
   const totalItems = useMemo(
     () => products.reduce((acc, curr) => acc + curr.inventory, 0),
@@ -77,6 +80,8 @@ function Dashboard() {
         lowStockCount={lowStockCount}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
         currentView={currentView}
         onChangeView={setCurrentView}
       />
