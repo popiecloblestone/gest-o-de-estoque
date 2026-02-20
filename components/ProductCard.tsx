@@ -9,6 +9,7 @@ interface ProductCardProps {
   onDelete: (id: string | number) => void;
   onTogglePromotion: (id: string | number, value: boolean) => void;
   onToggleFreeShipping: (id: string | number, value: boolean) => void;
+  onToggleFeatured: (id: string | number, value: boolean) => void;
 }
 
 const getStockStatus = (count: number): StockStatus => {
@@ -25,6 +26,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onDelete,
   onTogglePromotion,
   onToggleFreeShipping,
+  onToggleFeatured,
 }) => {
   const status = getStockStatus(product.inventory);
 
@@ -116,6 +118,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 }`}
             >
               Frete
+            </button>
+            <button
+              onClick={() => onToggleFeatured(product.id, !product.isFeatured)}
+              className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase transition-all ${product.isFeatured
+                ? 'bg-amber-500 text-white shadow-sm shadow-amber-500/20'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 hover:text-amber-500'
+                }`}
+            >
+              Destaque
             </button>
           </div>
           {renderBadge()}

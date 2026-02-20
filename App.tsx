@@ -11,7 +11,7 @@ import { Login } from './components/Login';
 
 function Dashboard() {
   // Logic extracted to custom hook
-  const { products, addProduct, editProduct, deleteProduct, togglePromotion, toggleFreeShipping, updateInventory, updatePrice, loading, error } = useProducts();
+  const { products, addProduct, editProduct, deleteProduct, togglePromotion, toggleFreeShipping, toggleFeatured, updateInventory, updatePrice, loading, error } = useProducts();
   const { signOut, user } = useAuth(); // Get user and signOut
 
   // UI State

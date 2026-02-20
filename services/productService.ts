@@ -194,6 +194,18 @@ export const productService = {
         }
     },
 
+    async toggleFeatured(id: string | number, value: boolean): Promise<void> {
+        const { error } = await supabase
+            .from('products')
+            .update({ is_featured: value })
+            .eq('id', id);
+
+        if (error) {
+            console.error('Error toggling featured status:', error);
+            throw error;
+        }
+    },
+
     // Helper to standardise return object
     _mapToFrontend(data: any, originalInventory?: number): Product {
         return {

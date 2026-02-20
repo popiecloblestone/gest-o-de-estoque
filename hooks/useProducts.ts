@@ -129,6 +129,19 @@ export const useProducts = () => {
         }
     }, [loadProducts]);
 
+    const toggleFeatured = useCallback(async (id: string | number, value: boolean) => {
+        // Optimistic update
+        setProducts(prev => prev.map(p => p.id === id ? { ...p, isFeatured: value } : p));
+
+        try {
+            await productService.toggleFeatured(id, value);
+        } catch (err) {
+            console.error(err);
+            setError('Erro ao atualizar destaque. Revertendo...');
+            await loadProducts(); // Revert
+        }
+    }, [loadProducts]);
+
     return {
         products,
         loading,
@@ -138,6 +151,7 @@ export const useProducts = () => {
         deleteProduct,
         togglePromotion,
         toggleFreeShipping,
+        toggleFeatured,
         updateInventory,
         updatePrice,
         refresh: loadProducts

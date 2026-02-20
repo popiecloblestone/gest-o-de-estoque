@@ -27,6 +27,7 @@ export interface Product {
   weight?: string;
   description?: string;
   freeShipping?: boolean;
+  isFeatured?: boolean;
   brand?: string; // Explicit brand field if we want to move away from sku mapping
 
 }

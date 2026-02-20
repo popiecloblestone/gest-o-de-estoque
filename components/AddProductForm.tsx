@@ -24,7 +24,8 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
     material: initialData?.material || '',
     weight: initialData?.weight || '',
     description: initialData?.description || '',
-    freeShipping: initialData?.freeShipping || false
+    freeShipping: initialData?.freeShipping || false,
+    isFeatured: initialData?.isFeatured || false
   });
 
   const [stockItems, setStockItems] = useState<StockOption[]>(
@@ -46,7 +47,8 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
         material: initialData.material || '',
         weight: initialData.weight || '',
         description: initialData.description || '',
-        freeShipping: initialData.freeShipping || false
+        freeShipping: initialData.freeShipping || false,
+        isFeatured: initialData.isFeatured || false
       });
       setStockItems(initialData.stock || [{ size: '', color: '', quantity: 0 }]);
     }
@@ -90,6 +92,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
         weight: formData.weight,
         description: formData.description,
         freeShipping: formData.freeShipping,
+        isFeatured: formData.isFeatured,
         brand: formData.sku // Explicitly mapping SKU input to brand field for backend
       });
     } catch (err: any) {
@@ -277,6 +280,16 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
             </div>
             <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-emerald-500 transition-colors">Frete Grátis</span>
           </label>
+
+          <label
+            onClick={() => setFormData({ ...formData, isFeatured: !formData.isFeatured })}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
+            <div className={`w-12 h-7 rounded-full transition-colors relative ${formData.isFeatured ? 'bg-amber-500' : 'bg-slate-200 dark:bg-slate-700'}`}>
+              <div className={`absolute top-1 left-1 bg-white w-5 h-5 rounded-full shadow-sm transition-transform ${formData.isFeatured ? 'translate-x-5' : 'translate-x-0'}`} />
+            </div>
+            <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-amber-500 transition-colors">Destaque da Semana</span>
+          </label>
         </div>
 
         <hr className="border-slate-100 dark:border-slate-800" />
@@ -378,7 +391,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
             {isLoading ? 'Salvando...' : (initialData ? 'Atualizar Produto' : 'Salvar Produto')}
           </button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 };
