@@ -170,6 +170,30 @@ export const productService = {
         }
     },
 
+    async togglePromotion(id: string | number, value: boolean): Promise<void> {
+        const { error } = await supabase
+            .from('products')
+            .update({ is_promotion: value })
+            .eq('id', id);
+
+        if (error) {
+            console.error('Error toggling promotion:', error);
+            throw error;
+        }
+    },
+
+    async toggleFreeShipping(id: string | number, value: boolean): Promise<void> {
+        const { error } = await supabase
+            .from('products')
+            .update({ free_shipping: value })
+            .eq('id', id);
+
+        if (error) {
+            console.error('Error toggling free shipping:', error);
+            throw error;
+        }
+    },
+
     // Helper to standardise return object
     _mapToFrontend(data: any, originalInventory?: number): Product {
         return {

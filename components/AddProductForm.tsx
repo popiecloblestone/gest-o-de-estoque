@@ -258,14 +258,20 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
 
         {/* --- SECTION 3: OPTIONS --- */}
         <div className="flex gap-6">
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <label
+            onClick={() => setFormData({ ...formData, isPromotion: !formData.isPromotion })}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
             <div className={`w-12 h-7 rounded-full transition-colors relative ${formData.isPromotion ? 'bg-primary' : 'bg-slate-200 dark:bg-slate-700'}`}>
               <div className={`absolute top-1 left-1 bg-white w-5 h-5 rounded-full shadow-sm transition-transform ${formData.isPromotion ? 'translate-x-5' : 'translate-x-0'}`} />
             </div>
             <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">Produto em Promoção</span>
           </label>
 
-          <label className="flex items-center gap-3 cursor-pointer group">
+          <label
+            onClick={() => setFormData({ ...formData, freeShipping: !formData.freeShipping })}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
             <div className={`w-12 h-7 rounded-full transition-colors relative ${formData.freeShipping ? 'bg-emerald-500' : 'bg-slate-200 dark:bg-slate-700'}`}>
               <div className={`absolute top-1 left-1 bg-white w-5 h-5 rounded-full shadow-sm transition-transform ${formData.freeShipping ? 'translate-x-5' : 'translate-x-0'}`} />
             </div>

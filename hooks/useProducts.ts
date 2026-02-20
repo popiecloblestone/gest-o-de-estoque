@@ -103,6 +103,32 @@ export const useProducts = () => {
         }
     }, [products]);
 
+    const togglePromotion = useCallback(async (id: string | number, value: boolean) => {
+        // Optimistic update
+        setProducts(prev => prev.map(p => p.id === id ? { ...p, isPromotion: value } : p));
+
+        try {
+            await productService.togglePromotion(id, value);
+        } catch (err) {
+            console.error(err);
+            setError('Erro ao atualizar promoção. Revertendo...');
+            await loadProducts(); // Revert
+        }
+    }, [loadProducts]);
+
+    const toggleFreeShipping = useCallback(async (id: string | number, value: boolean) => {
+        // Optimistic update
+        setProducts(prev => prev.map(p => p.id === id ? { ...p, freeShipping: value } : p));
+
+        try {
+            await productService.toggleFreeShipping(id, value);
+        } catch (err) {
+            console.error(err);
+            setError('Erro ao atualizar frete grátis. Revertendo...');
+            await loadProducts(); // Revert
+        }
+    }, [loadProducts]);
+
     return {
         products,
         loading,
@@ -110,6 +136,8 @@ export const useProducts = () => {
         addProduct,
         editProduct,
         deleteProduct,
+        togglePromotion,
+        toggleFreeShipping,
         updateInventory,
         updatePrice,
         refresh: loadProducts

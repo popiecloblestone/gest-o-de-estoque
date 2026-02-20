@@ -7,6 +7,8 @@ interface ProductCardProps {
   onUpdatePrice: (id: string | number, newPrice: number) => void;
   onEdit: (product: Product) => void;
   onDelete: (id: string | number) => void;
+  onTogglePromotion: (id: string | number, value: boolean) => void;
+  onToggleFreeShipping: (id: string | number, value: boolean) => void;
 }
 
 const getStockStatus = (count: number): StockStatus => {
@@ -21,6 +23,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onUpdatePrice,
   onEdit,
   onDelete,
+  onTogglePromotion,
+  onToggleFreeShipping,
 }) => {
   const status = getStockStatus(product.inventory);
 
@@ -71,6 +75,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <p className="text-xs font-medium text-slate-400 dark:text-slate-500 truncate mt-1">
               SKU: {product.sku}
             </p>
+          </div>
+          <div className="flex gap-2 mt-2">
+            <button
+              onClick={() => onTogglePromotion(product.id, !product.isPromotion)}
+              className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase transition-all ${product.isPromotion
+                ? 'bg-primary text-white shadow-sm shadow-primary/20'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 hover:text-primary'
+                }`}
+            >
+              Promo
+            </button>
+            <button
+              onClick={() => onToggleFreeShipping(product.id, !product.freeShipping)}
+              className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase transition-all ${product.freeShipping
+                ? 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/20'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 hover:text-emerald-500'
+                }`}
+            >
+              Frete
+            </button>
           </div>
           {renderBadge()}
         </div>
