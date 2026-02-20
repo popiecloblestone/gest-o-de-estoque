@@ -49,7 +49,7 @@ export async function createCoupon(couponData: Omit<Coupon, 'id' | 'created_at' 
 /**
  * Update an existing coupon
  */
-export async function updateCoupon(id: number, couponData: Partial<Coupon>): Promise<{ success: boolean; error: any }> {
+export async function updateCoupon(id: string, couponData: Partial<Coupon>): Promise<{ success: boolean; error: any }> {
     try {
         const { error } = await supabase
             .from('coupons')
@@ -71,7 +71,7 @@ export async function updateCoupon(id: number, couponData: Partial<Coupon>): Pro
 /**
  * Delete a coupon
  */
-export async function deleteCoupon(id: number): Promise<{ success: boolean; error: any }> {
+export async function deleteCoupon(id: string): Promise<{ success: boolean; error: any }> {
     try {
         const { error } = await supabase
             .from('coupons')
@@ -146,7 +146,7 @@ export function applyCouponDiscount(coupon: Coupon, cartTotal: number): number {
 /**
  * Increment coupon usage count
  */
-export async function incrementCouponUsage(couponId: number): Promise<{ success: boolean; error: any }> {
+export async function incrementCouponUsage(couponId: string): Promise<{ success: boolean; error: any }> {
     try {
         const { data: coupon, error: fetchError } = await supabase
             .from('coupons')

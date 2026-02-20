@@ -158,6 +158,18 @@ export const productService = {
         return this._mapToFrontend(data, product.inventory);
     },
 
+    async deleteProduct(id: string | number): Promise<void> {
+        const { error } = await supabase
+            .from('products')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error('Error deleting product:', error);
+            throw error;
+        }
+    },
+
     // Helper to standardise return object
     _mapToFrontend(data: any, originalInventory?: number): Product {
         return {

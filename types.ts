@@ -74,7 +74,7 @@ export interface Order {
 
 // Coupon types
 export interface Coupon {
-  id: number;
+  id: string;
   code: string;
   discount_type: 'percentage' | 'fixed';
   discount_value: number;

@@ -251,16 +251,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Cores (Visualização)</label>
-            <input
-              type="text"
-              placeholder="Ex: Preto, Branco, Azul"
-              className="w-full bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-border-dark rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none transition-all"
-              value={formData.colors}
-              onChange={e => setFormData({ ...formData, colors: e.target.value })}
-            />
-          </div>
+
         </div>
 
         <hr className="border-slate-100 dark:border-slate-800" />

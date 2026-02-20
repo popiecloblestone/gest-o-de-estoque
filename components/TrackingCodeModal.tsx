@@ -12,11 +12,6 @@ export function TrackingCodeModal({ orderId, currentCode, onClose, onSave }: Tra
     const [isSaving, setIsSaving] = useState(false);
 
     const handleSave = async () => {
-        if (!code.trim()) {
-            alert('Por favor, insira um código de rastreio');
-            return;
-        }
-
         setIsSaving(true);
         await onSave(orderId, code.trim());
         setIsSaving(false);
@@ -26,7 +21,7 @@ export function TrackingCodeModal({ orderId, currentCode, onClose, onSave }: Tra
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
             <div className="bg-slate-800 rounded-xl p-6 max-w-md w-full shadow-2xl border border-slate-700">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-bold text-brand-gold">
                         {currentCode ? 'Editar' : 'Adicionar'} Código de Rastreio
                     </h3>
                     <button
@@ -38,7 +33,7 @@ export function TrackingCodeModal({ orderId, currentCode, onClose, onSave }: Tra
                 </div>
 
                 <div className="mb-6">
-                    <label className="block text-sm font-bold text-slate-300 mb-2">
+                    <label className="block text-sm font-bold text-brand-gold mb-2">
                         Código de Rastreio
                     </label>
                     <input

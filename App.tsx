@@ -11,7 +11,7 @@ import { Login } from './components/Login';
 
 function Dashboard() {
   // Logic extracted to custom hook
-  const { products, addProduct, editProduct, updateInventory, updatePrice, loading, error } = useProducts();
+  const { products, addProduct, editProduct, deleteProduct, updateInventory, updatePrice, loading, error } = useProducts();
   const { signOut, user } = useAuth(); // Get user and signOut
 
   // UI State
@@ -105,6 +105,7 @@ function Dashboard() {
                       onUpdateInventory={updateInventory}
                       onUpdatePrice={updatePrice}
                       onEdit={handleEdit}
+                      onDelete={deleteProduct}
                     />
                   ))}
                 </div>

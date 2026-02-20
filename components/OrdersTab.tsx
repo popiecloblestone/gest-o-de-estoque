@@ -193,7 +193,7 @@ export function OrdersTab() {
                         <div className="mt-6 pt-6 border-t border-slate-700">
                             {order.tracking_code ? (
                                 <div className="bg-brand-gold/10 p-4 border border-brand-gold/30 rounded-lg">
-                                    <p className="text-xs font-bold uppercase text-slate-400 mb-1">
+                                    <p className="text-xs font-bold uppercase text-brand-gold mb-1">
                                         Código de Rastreio
                                     </p>
                                     <div className="flex items-center justify-between">
@@ -209,7 +209,7 @@ export function OrdersTab() {
                             ) : (
                                 <button
                                     onClick={() => setSelectedOrder(order)}
-                                    className="w-full px-4 py-3 bg-brand-gold/10 hover:bg-brand-gold/20 border border-brand-gold/30 rounded-lg text-brand-gold font-bold transition-colors flex items-center justify-center gap-2"
+                                    className="w-full px-4 py-3 bg-brand-gold hover:bg-yellow-500 rounded-lg text-slate-900 font-bold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/20"
                                 >
                                     <span className="material-symbols-outlined">add</span>
                                     Adicionar Código de Rastreio

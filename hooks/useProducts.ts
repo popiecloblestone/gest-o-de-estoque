@@ -87,12 +87,29 @@ export const useProducts = () => {
         }
     }, [loadProducts]);
 
+    const deleteProduct = useCallback(async (id: string | number) => {
+        // Optimistic update
+        const previousProducts = [...products];
+        setProducts(prev => prev.filter(p => p.id !== id));
+
+        try {
+            await productService.deleteProduct(id);
+            return true;
+        } catch (err) {
+            console.error(err);
+            setError('Erro ao excluir produto. Revertendo...');
+            setProducts(previousProducts);
+            return false;
+        }
+    }, [products]);
+
     return {
         products,
         loading,
         error,
         addProduct,
         editProduct,
+        deleteProduct,
         updateInventory,
         updatePrice,
         refresh: loadProducts

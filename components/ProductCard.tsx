@@ -6,6 +6,7 @@ interface ProductCardProps {
   onUpdateInventory: (id: string | number, delta: number) => void;
   onUpdatePrice: (id: string | number, newPrice: number) => void;
   onEdit: (product: Product) => void;
+  onDelete: (id: string | number) => void;
 }
 
 const getStockStatus = (count: number): StockStatus => {
@@ -19,6 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onUpdateInventory,
   onUpdatePrice,
   onEdit,
+  onDelete,
 }) => {
   const status = getStockStatus(product.inventory);
 
@@ -72,13 +74,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           {renderBadge()}
         </div>
-        <button
-          onClick={() => onEdit(product)}
-          className="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-          title="Editar Produto"
-        >
-          <span className="material-symbols-outlined">edit</span>
-        </button>
+        <div className="flex flex-col gap-1">
+          <button
+            onClick={() => onEdit(product)}
+            className="p-2 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+            title="Editar Produto"
+          >
+            <span className="material-symbols-outlined">edit</span>
+          </button>
+          <button
+            onClick={() => {
+              if (window.confirm(`Deseja realmente excluir o produto "${product.name}"?`)) {
+                onDelete(product.id);
+              }
+            }}
+            className="p-2 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-xl transition-all"
+            title="Excluir Produto"
+          >
+            <span className="material-symbols-outlined">delete</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-5 pt-2">

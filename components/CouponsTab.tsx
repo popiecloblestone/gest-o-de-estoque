@@ -61,7 +61,7 @@ export const CouponsTab: React.FC = () => {
         setShowForm(true);
     };
 
-    const handleDeleteCoupon = async (id: number) => {
+    const handleDeleteCoupon = async (id: string) => {
         if (!confirm('Tem certeza que deseja deletar este cupom?')) {
             return;
         }
