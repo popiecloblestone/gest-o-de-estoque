@@ -93,3 +93,16 @@ export interface CouponValidation {
   discount?: number;
   coupon?: Coupon;
 }
+
+export interface AdminCartItem {
+  id: number;
+  user_id: string;
+  product_id: number;
+  quantity: number;
+  size: string;
+  color: string;
+  created_at: string;
+  updated_at: string;
+  product?: Product;
+  customer?: CustomerInfo;
+}

@@ -5,6 +5,7 @@ import { FloatingActionButton } from './components/FloatingActionButton';
 import { AddProductForm } from './components/AddProductForm';
 import { OrdersTab } from './components/OrdersTab';
 import { CouponsTab } from './components/CouponsTab';
+import { CartsTab } from './components/CartsTab';
 import { useProducts } from './hooks/useProducts';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Login } from './components/Login';
@@ -17,7 +18,7 @@ function Dashboard() {
   // UI State
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
-  const [currentView, setCurrentView] = useState<'list' | 'add' | 'orders' | 'coupons'>('list');
+  const [currentView, setCurrentView] = useState<'list' | 'add' | 'orders' | 'coupons' | 'carts'>('list');
   const [isSaving, setIsSaving] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
 
@@ -146,9 +147,13 @@ function Dashboard() {
           <main className="flex-1">
             <OrdersTab />
           </main>
-        ) : (
+        ) : currentView === 'coupons' ? (
           <main className="flex-1">
             <CouponsTab />
+          </main>
+        ) : (
+          <main className="flex-1">
+            <CartsTab />
           </main>
         )}
       </div>
