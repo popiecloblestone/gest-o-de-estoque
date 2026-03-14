@@ -1,5 +1,6 @@
 import React from 'react';
 import { Product, StockStatus } from '../types';
+import { analyticsService } from '../services/analyticsService';
 
 interface ProductCardProps {
   product: Product;
@@ -66,7 +67,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Absolute Actions - Grouped and Neat */}
       <div className="absolute top-4 right-4 flex gap-0.5 z-10 opacity-0 group-hover:opacity-100 transition-all duration-200">
         <button
-          onClick={() => onEdit(product)}
+          onClick={() => {
+            analyticsService.recordProductView(product.id);
+            onEdit(product);
+          }}
           className="p-1.5 text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-all"
           title="Editar Produto"
         >

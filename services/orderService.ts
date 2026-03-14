@@ -11,9 +11,7 @@ export async function fetchOrders(): Promise<{ data: Order[] | null; error: any 
             .select(`
         *,
         profiles:user_id (
-          full_name,
-          email,
-          phone
+          full_name
         ),
         items:order_items (
           *
@@ -31,8 +29,8 @@ export async function fetchOrders(): Promise<{ data: Order[] | null; error: any 
             ...order,
             customer: order.profiles ? {
                 name: order.profiles.full_name || 'Nome não disponível',
-                email: order.profiles.email || '',
-                phone: order.profiles.phone || ''
+                email: 'Não disponível',
+                phone: 'Não disponível'
             } : undefined,
             profiles: undefined // Remove profiles from final object
         })) || [];

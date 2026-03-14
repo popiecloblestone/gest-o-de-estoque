@@ -11,9 +11,7 @@ export async function fetchAllCarts(): Promise<{ data: AdminCartItem[] | null; e
             .select(`
                 *,
                 profiles:user_id (
-                  full_name,
-                  email,
-                  phone
+                  full_name
                 ),
                 product:product_id (
                   *
@@ -31,8 +29,8 @@ export async function fetchAllCarts(): Promise<{ data: AdminCartItem[] | null; e
             ...cart,
             customer: cart.profiles ? {
                 name: cart.profiles.full_name || 'Nome não disponível',
-                email: cart.profiles.email || '',
-                phone: cart.profiles.phone || ''
+                email: 'Não disponível',
+                phone: 'Não disponível'
             } : undefined,
             product: cart.product,
             profiles: undefined

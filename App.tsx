@@ -6,9 +6,11 @@ import { AddProductForm } from './components/AddProductForm';
 import { OrdersTab } from './components/OrdersTab';
 import { CouponsTab } from './components/CouponsTab';
 import { CartsTab } from './components/CartsTab';
+import { AnalyticsTab } from './components/AnalyticsTab';
 import { useProducts } from './hooks/useProducts';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Login } from './components/Login';
+import { useAnalytics } from './hooks/useAnalytics';
 
 function Dashboard() {
   // Logic extracted to custom hook
@@ -18,7 +20,7 @@ function Dashboard() {
   // UI State
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
-  const [currentView, setCurrentView] = useState<'list' | 'add' | 'orders' | 'coupons' | 'carts'>('list');
+  const [currentView, setCurrentView] = useState<'list' | 'add' | 'orders' | 'coupons' | 'carts' | 'analytics'>('list');
   const [isSaving, setIsSaving] = useState(false);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
 
@@ -151,9 +153,13 @@ function Dashboard() {
           <main className="flex-1">
             <CouponsTab />
           </main>
-        ) : (
+        ) : currentView === 'carts' ? (
           <main className="flex-1">
             <CartsTab />
+          </main>
+        ) : (
+          <main className="flex-1">
+            <AnalyticsTab />
           </main>
         )}
       </div>
@@ -180,6 +186,8 @@ function AppContent() {
 }
 
 function App() {
+  useAnalytics();
+
   return (
     <AuthProvider>
       <AppContent />

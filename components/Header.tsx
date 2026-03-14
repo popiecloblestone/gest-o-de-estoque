@@ -8,8 +8,8 @@ interface HeaderProps {
   setSearchQuery: (query: string) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
-  currentView: 'list' | 'add' | 'orders' | 'coupons' | 'carts';
-  onChangeView: (view: 'list' | 'add' | 'orders' | 'coupons' | 'carts') => void;
+  currentView: 'list' | 'add' | 'orders' | 'coupons' | 'carts' | 'analytics';
+  onChangeView: (view: 'list' | 'add' | 'orders' | 'coupons' | 'carts' | 'analytics') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -85,6 +85,15 @@ export const Header: React.FC<HeaderProps> = ({
                 }`}
             >
               <span>Carrinhos</span>
+            </button>
+            <button
+              onClick={() => onChangeView('analytics')}
+              className={`px-6 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${currentView === 'analytics'
+                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                }`}
+            >
+              <span>Estatísticas</span>
             </button>
           </nav>
 
