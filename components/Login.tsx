@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '../services/supabase';
+import { adminSignIn } from '../services/auth';
 
 export const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -12,15 +12,13 @@ export const Login: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        const { error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (error) {
-            setError(error.message);
+        try {
+            await adminSignIn(email, password);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     return (
