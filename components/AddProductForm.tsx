@@ -127,7 +127,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
               ) : (
                 <div className="text-center p-4">
                   <span className="material-symbols-outlined text-4xl text-slate-400 mb-2">image</span>
-                  <p className="text-xs text-slate-400">Preview da Imagem</p>
+                  <p className="text-xs text-slate-400">Pré-visualização da Imagem</p>
                 </div>
               )}
             </div>
@@ -159,7 +159,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Marca (Brand)</label>
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Marca</label>
                 <input
                   required
                   type="text"
@@ -214,7 +214,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
         {/* --- SECTION 2: DETAILS & ATTRIBUTES --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Categoria (Surface)</label>
+            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Categoria (Tipo de Piso)</label>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.filter(c => c !== 'Todos').map(cat => (
                 <button
@@ -306,7 +306,7 @@ export const AddProductForm: React.FC<AddProductFormProps> = ({ onSave, onCancel
               <thead className="bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase text-xs">
                 <tr>
                   <th className="px-4 py-2">Tamanho</th>
-                  <th className="px-4 py-2">Cor (Variação)</th>
+                  <th className="px-4 py-2">Cor / Variação</th>
                   <th className="px-4 py-2">Qtd</th>
                   <th className="px-4 py-2 w-10"></th>
                 </tr>

@@ -108,7 +108,11 @@ export function OrdersTab() {
                                 <p className="text-sm text-slate-400 mb-1">
                                     <span className="font-semibold">Status:</span>{' '}
                                     <span className="inline-block px-2 py-1 bg-green-900/30 text-green-400 rounded text-xs font-bold">
-                                        {order.status.toUpperCase()}
+                                        {order.status === 'pending' ? 'PENDENTE' : 
+                                         order.status === 'paid' ? 'PAGO' : 
+                                         order.status === 'shipped' ? 'ENVIADO' : 
+                                         order.status === 'delivered' ? 'ENTREGUE' : 
+                                         order.status.toUpperCase()}
                                     </span>
                                 </p>
                                 <p className="text-lg font-bold text-brand-gold mt-2">

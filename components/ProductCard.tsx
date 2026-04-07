@@ -112,7 +112,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 hover:text-primary'
                 }`}
             >
-              Promo
+              Promoção
             </button>
             <button
               onClick={() => onToggleFreeShipping(product.id, !product.freeShipping)}
